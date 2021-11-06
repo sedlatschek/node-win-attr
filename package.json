@@ -13,6 +13,7 @@
     "url": "https://github.com/sedlatschek/win-attr"
   },
   "scripts": {
+    "build": "node-gyp build && tsc -p tsconfig.json",
     "example": "ts-node ./example/get.ts",
     "lint": "eslint . --ext .ts"
   },
@@ -35,7 +36,6 @@
   },
   "dependencies": {
     "bindings": "^1.5.0",
-    "fs": "^0.0.1-security",
     "node-addon-api": "^4.2.0"
   },
   "gypfile": true

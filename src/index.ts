@@ -1,6 +1,11 @@
 import AttributeSetting from './AttributeSetting';
 import FileAttribute from './FileAttribute';
-const attr = require('bindings')('attr');
+const attr = process.platform === 'win32'
+  /* eslint-disable-next-line @typescript-eslint/no-var-requires */
+  ? require('bindings')('attr')
+  : null;
+
+const PLATFORM_ERROR = `Can not reference win-attr addon on ${process.platform}.`;
 
 /**
  * Get the Windows filesystem attributes to a given path.
@@ -11,7 +16,7 @@ const attr = require('bindings')('attr');
 export function getAttributes(path: string): Promise<AttributeSetting> {
   return new Promise<AttributeSetting>((resolve, reject) => {
     try {
-      const result: AttributeSetting = attr.getAttributes(path);
+      const result: AttributeSetting = getAttributesSync(path);
       resolve(result);
     } catch (e) {
       reject(e);
@@ -26,46 +31,33 @@ export function getAttributes(path: string): Promise<AttributeSetting> {
  * @returns Windows filesystem attributes
  */
 export function getAttributesSync(path: string): AttributeSetting {
+  if (!attr) {
+    throw new ReferenceError(PLATFORM_ERROR);
+  }
   return attr.getAttributes(path);
 }
 
 /**
- * Set the given Windows filesystem attribute flag settings for a given path.
+ * Set the given Windows filesystem attribute settings for a given path.
  *
  * @param {string} path
+ * @param {Record<FileAttribute, boolean>} settings
  */
-export function setAttributes(path: string, attributes: AttributeSetting): Promise<void> {
+export function setAttributes(path: string, settings: Record<FileAttribute, boolean>): Promise<void> {
   // TODO
   return new Promise((resolve) => resolve());
 }
 
 /**
- * Set the given Windows filesystem attribute flag settings for a given path.
+ * Set the given Windows filesystem attribute settings for a given path.
  *
  * @param {string} path
- * @param {AttributeSetting} settings
+ * @param {Record<FileAttribute, boolean>} settings
  */
- export function setAttributesSync(path: string, settings: AttributeSetting): void {
-  // TODO
-}
-
-/**
- * Add the given Windows filesystem attribute flat for a given path.
- *
- * @param path
- * @param settings
- */
-export function addAttribute(path: string, settings: FileAttribute): Promise<void> {
-  // TODO
-  return new Promise((resolve) => resolve());
-}
-
-/**
- * Add the given Windows filesystem attribute flat for a given path.
- * @param path
- * @param settings
- */
-export function addAttributeSync(path: string, settings: FileAttribute): void {
+ export function setAttributesSync(path: string, settings: Record<FileAttribute, boolean>): void {
+  if (!attr) {
+    throw new ReferenceError(PLATFORM_ERROR);
+  }
   // TODO
 }
 
@@ -77,6 +69,4 @@ export default {
   getAttributesSync,
   setAttributes,
   setAttributesSync,
-  addAttribute,
-  addAttributeSync,
 }
