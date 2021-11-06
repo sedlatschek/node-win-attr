@@ -1,44 +1,44 @@
 import FileAttribute from './FileAttribute';
 
-interface AttributeSetting {
+interface GetAttributes {
   /**
    * A file that is read-only. Applications can read the file, but cannot write to it or delete
    * it. This attribute is not honored on directories. For more information, see You cannot view
    * or change the Read-only or the System attributes of folders in Windows Server 2003, in
    * Windows XP, in Windows Vista or in Windows 7.
    */
-  [FileAttribute.Readonly]: boolean,
+  [FileAttribute.Readonly]?: boolean,
 
   /**
    * The file or directory is hidden. It is not included in an ordinary directory listing.
    */
-  [FileAttribute.Hidden]: boolean,
+  [FileAttribute.Hidden]?: boolean,
 
   /**
    * A file or directory that the operating system uses a part of, or uses exclusively.
    */
-  [FileAttribute.System]: boolean,
+  [FileAttribute.System]?: boolean,
 
   /**
    * The handle that identifies a directory.
    */
-  [FileAttribute.Directory]: boolean,
+  [FileAttribute.Directory]?: boolean,
 
   /**
    * A file or directory that is an archive file or directory. Applications typically use this
    * attribute to mark files for backup or removal.
    */
-  [FileAttribute.Archive]: boolean,
+  [FileAttribute.Archive]?: boolean,
 
   /**
    * This value is reserved for system use.
    */
-  [FileAttribute.Device]: boolean,
+  [FileAttribute.Device]?: boolean,
 
   /**
    * A file that does not have other attributes set. This attribute is valid only when used alone.
    */
-  [FileAttribute.Normal]: boolean,
+  [FileAttribute.Normal]?: boolean,
 
   /**
    * A file that is being used for temporary storage. File systems avoid writing data back to
@@ -46,24 +46,24 @@ interface AttributeSetting {
    * deletes a temporary file after the handle is closed. In that scenario, the system can
    * entirely avoid writing the data. Otherwise, the data is written after the handle is closed.
    */
-  [FileAttribute.Temporary]: boolean,
+  [FileAttribute.Temporary]?: boolean,
 
   /**
    * A file that is a sparse file.
    */
-  [FileAttribute.SparseFile]: boolean,
+  [FileAttribute.SparseFile]?: boolean,
 
   /**
    * A file or directory that has an associated reparse point, or a file that is a symbolic link.
    */
-  [FileAttribute.ReparsePoint]: boolean,
+  [FileAttribute.ReparsePoint]?: boolean,
 
   /**
    * A file or directory that is compressed. For a file, all of the data in the file is
    * compressed. For a directory, compression is the default for newly created files and
    * subdirectories.
    */
-  [FileAttribute.Compressed]: boolean,
+  [FileAttribute.Compressed]?: boolean,
 
   /**
    * The data of a file is not available immediately. This attribute indicates that the file data
@@ -71,19 +71,19 @@ interface AttributeSetting {
    * the hierarchical storage management software. Applications should not arbitrarily change
    * this attribute.
    */
-  [FileAttribute.Offline]: boolean,
+  [FileAttribute.Offline]?: boolean,
 
   /**
    * The file or directory is not to be indexed by the content indexing service.
    */
-  [FileAttribute.NotContentIndexed]: boolean,
+  [FileAttribute.NotContentIndexed]?: boolean,
 
   /**
    * A file or directory that is encrypted. For a file, all data streams in the file are
    * encrypted. For a directory, encryption is the default for newly created files and
    * subdirectories.
    */
-  [FileAttribute.Encrypted]: boolean,
+  [FileAttribute.Encrypted]?: boolean,
 
   /**
    * The directory or user data stream is configured with integrity (only supported on ReFS
@@ -93,12 +93,12 @@ interface AttributeSetting {
    * Windows Server 2008 R2, Windows 7, Windows Server 2008, Windows Vista, Windows Server 2003
    * and Windows XP: This flag is not supported until Windows Server 2012.
    */
-  [FileAttribute.IntegrityStream]: boolean,
+  [FileAttribute.IntegrityStream]?: boolean,
 
   /**
    * This value is reserved for system use.
    */
-  [FileAttribute.Virtual]: boolean,
+  [FileAttribute.Virtual]?: boolean,
 
   /**
    * The user data stream not to be read by the background data integrity scanner (AKA scrubber).
@@ -107,13 +107,13 @@ interface AttributeSetting {
    * Windows Server 2008 R2, Windows 7, Windows Server 2008, Windows Vista, Windows Server 2003
    * and Windows XP: This flag is not supported until Windows 8 and Windows Server 2012.
    */
-  [FileAttribute.NoScrubData]: boolean,
+  [FileAttribute.NoScrubData]?: boolean,
 
-  [FileAttribute.EA]: boolean,
+  [FileAttribute.EA]?: boolean,
 
-  [FileAttribute.Pinned]: boolean,
+  [FileAttribute.Pinned]?: boolean,
 
-  [FileAttribute.Unpinned]: boolean,
+  [FileAttribute.Unpinned]?: boolean,
 
   /**
    * This attribute only appears in directory enumeration classes (FILE_DIRECTORY_INFORMATION,
@@ -122,7 +122,7 @@ interface AttributeSetting {
    * the item will be more expensive than normal, e.g. it will cause at least some of it to be
    * fetched from a remote store.
    */
-  [FileAttribute.RecallOnOpen]: boolean,
+  [FileAttribute.RecallOnOpen]?: boolean,
 
   /**
    * When this attribute is set, it means that the file or directory is not fully present
@@ -133,9 +133,9 @@ interface AttributeSetting {
    * least some of the file/directory content to be fetched from a remote store. Only kernel-mode
    * callers can set this bit.
    */
-  [FileAttribute.RecallOnDataAccess]: boolean,
+  [FileAttribute.RecallOnDataAccess]?: boolean,
 
-  [FileAttribute.StrictlySequential]: boolean,
+  [FileAttribute.StrictlySequential]?: boolean,
 }
 
-export default AttributeSetting;
+export default GetAttributes;

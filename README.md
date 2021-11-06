@@ -7,7 +7,7 @@
 - Test
   - Get
   - Set
-  - Llinux
+  - Linux
 - Handling for non existing files
 - NPM
 - README
@@ -25,4 +25,7 @@ npm install
 
 # lint
 npm run lint
+
+# run example
+npm run example
 ```

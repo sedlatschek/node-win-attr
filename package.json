@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "node-gyp build && tsc -p tsconfig.json",
-    "example": "ts-node ./example/get.ts",
+    "example": "ts-node ./example/get.ts && ts-node ./example/set.ts",
     "lint": "eslint . --ext .ts"
   },
   "keywords": [

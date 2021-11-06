@@ -2,7 +2,7 @@
 #include <napi.h>
 #include <windows.h>
 
-const std::map<DWORD, std::string> attr_map = {
+const std::map<DWORD, std::string> get_attr_map = {
   { FILE_ATTRIBUTE_READONLY, "readonly" },
   { FILE_ATTRIBUTE_HIDDEN, "hidden" },
   { FILE_ATTRIBUTE_SYSTEM, "system" },
@@ -28,21 +28,11 @@ const std::map<DWORD, std::string> attr_map = {
   { FILE_ATTRIBUTE_STRICTLY_SEQUENTIAL, "strictlySequential" }
 };
 
-bool valid_parameters(const Napi::CallbackInfo& info) {
-  if (info.Length() < 1) {
-    return false;
-  }
-  if (!info[0].IsString()) {
-    return false;
-  }
-  return true;
-}
-
 Napi::Value GetAttributes(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
 
   // check parameters
-  if (!valid_parameters(info)) {
+  if (info.Length() != 1 || !info[0].IsString()) {
     Napi::TypeError::New(env, "Invalid arguments").ThrowAsJavaScriptException();
     return env.Null();
   }
@@ -56,7 +46,7 @@ Napi::Value GetAttributes(const Napi::CallbackInfo& info) {
 
   // build result
   Napi::Object obj = Napi::Object::New(env);
-  for (auto it = attr_map.begin(); it != attr_map.end(); ++it) {
+  for (auto it = get_attr_map.begin(); it != get_attr_map.end(); ++it) {
     obj.Set(
       Napi::String::New(env, it->second),
       Napi::Boolean::New(env, attr & it->first)
@@ -66,12 +56,63 @@ Napi::Value GetAttributes(const Napi::CallbackInfo& info) {
   return obj;
 }
 
+const std::map<DWORD, std::string> set_attr_map = {
+  { FILE_ATTRIBUTE_READONLY, "readonly" },
+  { FILE_ATTRIBUTE_HIDDEN, "hidden" },
+  { FILE_ATTRIBUTE_SYSTEM, "system" },
+  { FILE_ATTRIBUTE_ARCHIVE, "archive" },
+  { FILE_ATTRIBUTE_NORMAL, "normal" },
+  { FILE_ATTRIBUTE_TEMPORARY, "temporary" },
+  { FILE_ATTRIBUTE_OFFLINE, "offline" },
+  { FILE_ATTRIBUTE_NOT_CONTENT_INDEXED, "notContentIndexed" },
+};
+
+Napi::Value SetAttributes(const Napi::CallbackInfo& info) {
+  Napi::Env env = info.Env();
+
+  // check parameters
+  if (info.Length() != 2 || !info[0].IsString() || !info[1].IsObject()) {
+    Napi::TypeError::New(env, "Invalid arguments").ThrowAsJavaScriptException();
+    return env.Null();
+  }
+
+  // cast parameters
+  std::string str = info[0].ToString().Utf8Value();
+  const char* path = str.c_str();
+  Napi::Object obj = info[1].ToObject();
+
+  // retrieve attributes
+  DWORD attr = GetFileAttributes(path);
+
+  for (auto it = set_attr_map.begin(); it != set_attr_map.end(); ++it) {
+    if (obj.Has(it->second)) {
+      BOOL value = obj.Get(it->second).ToBoolean();
+      // flag is set
+      if (value) {
+        // flag is true
+        attr = attr | it->first;
+      } else {
+        // flag is false
+        attr = attr & ~it->first;
+      }
+    }
+  }
+
+  BOOL result = SetFileAttributes(path, attr);
+
+  return Napi::Boolean::New(env, result);
+}
+
 Napi::Object Init(Napi::Env env, Napi::Object exports) {
   exports.Set(
     Napi::String::New(env, "getAttributes"),
     Napi::Function::New(env, GetAttributes)
   );
+  exports.Set(
+    Napi::String::New(env, "setAttributes"),
+    Napi::Function::New(env, SetAttributes)
+  );
   return exports;
 }
 
-NODE_API_MODULE(winsibility, Init)
+NODE_API_MODULE(winattr, Init)
