@@ -1,0 +1,38 @@
+{
+  "name": "win-attr",
+  "version": "0.1.0",
+  "description": "Attributes for windows files and directories",
+  "main": "src/index.ts",
+  "author": "Simon Sedlatschek <code@sedlatschek.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sedlatschek/win-attr/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sedlatschek/win-attr"
+  },
+  "scripts": {
+    "example": "ts-node ./example/get.ts"
+  },
+  "keywords": [
+    "attributes",
+    "fs",
+    "file",
+    "filesystem",
+    "directory",
+    "ntfs",
+    "windows"
+  ],
+  "devDependencies": {
+    "@types/node": "^16.11.6",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.4.4"
+  },
+  "dependencies": {
+    "bindings": "^1.5.0",
+    "fs": "^0.0.1-security",
+    "node-addon-api": "^4.2.0"
+  },
+  "gypfile": true
+}
