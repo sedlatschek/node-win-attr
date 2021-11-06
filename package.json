@@ -6,11 +6,11 @@
   "author": "Simon Sedlatschek <code@sedlatschek.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sedlatschek/win-attr/issues"
+    "url": "https://github.com/sedlatschek/node-win-attr/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sedlatschek/win-attr"
+    "url": "https://github.com/sedlatschek/node-win-attr"
   },
   "scripts": {
     "build": "node-gyp build && tsc -p tsconfig.json",
