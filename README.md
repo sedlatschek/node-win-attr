@@ -8,7 +8,6 @@
   - Get
   - Set
   - Llinux
-- ESLint
 - NPM
 - README
   - Usage
@@ -16,3 +15,13 @@
 ## Usage
 
 TODO
+
+## Development
+
+```sh
+# install dependencies
+npm install
+
+# lint
+npm run lint
+```

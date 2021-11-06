@@ -13,7 +13,8 @@
     "url": "https://github.com/sedlatschek/win-attr"
   },
   "scripts": {
-    "example": "ts-node ./example/get.ts"
+    "example": "ts-node ./example/get.ts",
+    "lint": "eslint . --ext .ts"
   },
   "keywords": [
     "attributes",
@@ -26,6 +27,9 @@
   ],
   "devDependencies": {
     "@types/node": "^16.11.6",
+    "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "@typescript-eslint/parser": "^5.3.0",
+    "eslint": "^8.2.0",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4"
   },

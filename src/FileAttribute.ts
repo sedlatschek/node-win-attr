@@ -137,6 +137,6 @@ const enum FileAttribute {
   RecallOnDataAccess = 'recallOnDataAccess',
 
   StrictlySequential = 'strictlySequential'
-};
+}
 
 export default FileAttribute;
