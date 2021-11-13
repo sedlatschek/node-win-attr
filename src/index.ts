@@ -1,6 +1,6 @@
 import GetAttributes from './GetAttributes';
 import SetAttributes from './SetAttributes';
-const attr = process.platform === 'win32'
+const attr = process.platform.startsWith('win')
   /* eslint-disable-next-line @typescript-eslint/no-var-requires */
   ? require('bindings')('attr')
   : null;

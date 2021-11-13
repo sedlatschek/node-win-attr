@@ -15,7 +15,8 @@
   "scripts": {
     "build": "node-gyp build && tsc -p tsconfig.json",
     "example": "ts-node ./example/get.ts && ts-node ./example/set.ts",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "test": "mocha -r ts-node/register test/**/*.spec.ts"
   },
   "keywords": [
     "attributes",
@@ -27,10 +28,15 @@
     "windows"
   ],
   "devDependencies": {
+    "@types/chai": "^4.2.22",
+    "@types/mocha": "^9.0.0",
     "@types/node": "^16.11.6",
     "@typescript-eslint/eslint-plugin": "^5.3.0",
     "@typescript-eslint/parser": "^5.3.0",
+    "chai": "^4.3.4",
     "eslint": "^8.2.0",
+    "fs": "^0.0.1-security",
+    "mocha": "^9.1.3",
     "ts-node": "^10.4.0",
     "typescript": "^4.4.4"
   },

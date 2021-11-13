@@ -1,13 +1,9 @@
 # node-win-attr
 
-[WIP] Lightweight Node.js package without any dependencies to get and set filesystem attributes in Microsoft Windows.
+[WIP] Lightweight dependency-free Node.js package to get and set filesystem attributes in Microsoft Windows.
 
 ## TODOs
 
-- Test
-  - Get
-  - Set
-  - Linux
 - Handling for non existing files
 - NPM
 - README
@@ -28,4 +24,7 @@ npm run lint
 
 # run example
 npm run example
+
+# run tests
+npm run test
 ```
