@@ -4,7 +4,6 @@
 
 ## TODOs
 
-- Handling for non existing files
 - NPM
 - README
   - Usage

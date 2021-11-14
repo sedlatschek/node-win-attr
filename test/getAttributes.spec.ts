@@ -31,6 +31,11 @@ describeWin('getAttributes', () => {
       }
     });
   }
+
+  it('throws exception for non existing path', () => {
+    expect(() => getAttributesSync('nonexisting'))
+      .to.throw('File or directory not found');
+  });
 });
 
 describeUnix('getAttributes', () => {

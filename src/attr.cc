@@ -44,6 +44,16 @@ Napi::Value GetAttributes(const Napi::CallbackInfo& info) {
   // retrieve attributes
   DWORD attr = GetFileAttributes(path);
 
+  // handle errors
+  if (attr == INVALID_FILE_ATTRIBUTES) {
+    if (GetLastError() == ERROR_FILE_NOT_FOUND) {
+      Napi::Error::New(env, "File or directory not found").ThrowAsJavaScriptException();
+    } else {
+      Napi::Error::New(env, "Invalid file attributes").ThrowAsJavaScriptException();
+    }
+    return env.Null();
+  }
+
   // build result
   Napi::Object obj = Napi::Object::New(env);
   for (auto it = get_attr_map.begin(); it != get_attr_map.end(); ++it) {
@@ -83,6 +93,16 @@ Napi::Value SetAttributes(const Napi::CallbackInfo& info) {
 
   // retrieve attributes
   DWORD attr = GetFileAttributes(path);
+
+  // handle errors
+  if (attr == INVALID_FILE_ATTRIBUTES) {
+    if (GetLastError() == ERROR_FILE_NOT_FOUND) {
+      Napi::Error::New(env, "File or directory not found").ThrowAsJavaScriptException();
+    } else {
+      Napi::Error::New(env, "Invalid file attributes").ThrowAsJavaScriptException();
+    }
+    return env.Null();
+  }
 
   for (auto it = set_attr_map.begin(); it != set_attr_map.end(); ++it) {
     if (obj.Has(it->second)) {

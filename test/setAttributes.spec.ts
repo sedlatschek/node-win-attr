@@ -106,4 +106,9 @@ describeUnix('setAttributes', () => {
         .to.throw(`Can not reference win-attr addon on ${process.platform}.`);
     });
   }
+
+  it('throws exception for non existing path', () => {
+    expect(() => setAttributesSync('nonexisting', {}))
+      .to.throw('File or directory not found');
+  });
 });
