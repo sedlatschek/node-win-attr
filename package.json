@@ -1,6 +1,6 @@
 {
   "name": "win-attr",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Attributes for windows files and directories",
   "main": "dist/index.js",
   "author": "Simon Sedlatschek <code@sedlatschek.com>",
