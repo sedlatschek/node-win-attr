@@ -49,6 +49,11 @@ describeWin('setAttributes', () => {
     });
   }
 
+  it('throws exception for non existing path', () => {
+    expect(() => setAttributesSync('nonexisting', {}))
+      .to.throw('File or directory not found');
+  });
+
   describeWin('keeps previously existing attributes:', () => {
     before(() => {
       const dir = createDummyDirSync(undefined, 'keeps');
@@ -106,9 +111,4 @@ describeUnix('setAttributes', () => {
         .to.throw(`Can not reference win-attr addon on ${process.platform}.`);
     });
   }
-
-  it('throws exception for non existing path', () => {
-    expect(() => setAttributesSync('nonexisting', {}))
-      .to.throw('File or directory not found');
-  });
 });
