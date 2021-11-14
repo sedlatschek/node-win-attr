@@ -4,6 +4,7 @@
 node_modules
 example
 test
+src
 .editorconfig
 .eslintignore
 .eslintrc
