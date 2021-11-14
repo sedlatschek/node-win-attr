@@ -1,16 +1,36 @@
-# node-win-attr
+# win-attr
 
-[WIP] Lightweight dependency-free Node.js package to get and set filesystem attributes in Microsoft Windows.
+Lightweight dependency-free Node.js package to get and set filesystem attributes in Microsoft Windows.
 
-## TODOs
+## Installation
 
-- NPM
-- README
-  - Usage
+```sh
+npm install win-attr
+# or
+yarn add win-attr
+```
 
 ## Usage
 
-TODO
+```ts
+import { getAttributes, FileAttribute, setAttributes, SetAttributes  } from 'win-attr';
+
+(async () => {
+  // retrieve attributes
+  const path = '/path/to/directory';
+  const attributes = await getAttributes(path);
+  if (attributes.hidden) {
+    console.log(`${path} is hidden`);
+  }
+
+  // set attributes
+  const settings: SetAttributes = {
+    [FileAttribute.Hidden]: false,
+    [FileAttribute.Readonly]: false,
+  };
+  await setAttributes(path, settings);
+})();
+```
 
 ## Development
 
@@ -26,4 +46,7 @@ npm run example
 
 # run tests
 npm run test
+
+# build
+npm run build
 ```
