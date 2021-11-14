@@ -1,5 +1,5 @@
-name: Build/release
-on: push
+name: test
+on: [push, pull_request]
 
 jobs:
   test:
@@ -10,16 +10,17 @@ jobs:
         os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
-      - name: Check out Git repository
+      - name: check out git repository
         uses: actions/checkout@v2
 
-      - name: Install Node.js, NPM and Yarn
+      - name: install node.js, npm and yarn
         uses: actions/setup-node@v2
         with:
           node-version: 16
+          registry-url: https://registry.npmjs.org/
 
-      - name: Install project dependencies
+      - name: install project dependencies
         run: npm ci
 
-      - name: Run unit tests
+      - name: run unit tests
         run: npm run test

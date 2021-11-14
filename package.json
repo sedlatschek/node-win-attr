@@ -2,7 +2,7 @@
   "name": "win-attr",
   "version": "0.1.0",
   "description": "Attributes for windows files and directories",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "author": "Simon Sedlatschek <code@sedlatschek.com>",
   "license": "MIT",
   "bugs": {

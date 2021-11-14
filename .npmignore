@@ -1,0 +1,10 @@
+.github
+.vscode
+.werk
+node_modules
+example
+test
+.editorconfig
+.eslintignore
+.eslintrc
+tsconfig.json

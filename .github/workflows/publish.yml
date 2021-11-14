@@ -1,0 +1,21 @@
+name: publish
+
+on:
+  workflow_run:
+    workflows: ["test"]
+    types:
+      - completed
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    needs: [test]
+    if: contains(github.ref, 'refs/tags/')
+    steps:
+      - name: build
+        run: npm run build
+
+      - name: publish
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
