@@ -42,7 +42,6 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
-    "bindings": "^1.5.0",
     "node-addon-api": "^4.2.0"
   },
   "gypfile": true

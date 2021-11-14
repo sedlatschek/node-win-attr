@@ -2,7 +2,7 @@ import GetAttributes from './GetAttributes';
 import SetAttributes from './SetAttributes';
 const attr = process.platform.startsWith('win')
   /* eslint-disable-next-line @typescript-eslint/no-var-requires */
-  ? require('bindings')('attr')
+  ? require('../build/Release/attr.node')
   : null;
 
 const PLATFORM_ERROR = `Can not reference win-attr addon on ${process.platform}.`;
