@@ -1,4 +1,4 @@
-# win-attr
+# win-attributes
 
 Lightweight dependency-free Node.js package to get and set filesystem attributes in Microsoft Windows.
 
