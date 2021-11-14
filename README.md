@@ -1,5 +1,7 @@
 # win-attributes
 
+[![integration](https://github.com/sedlatschek/node-win-attributes/actions/workflows/integration.yml/badge.svg?branch=main)](https://github.com/sedlatschek/node-win-attributes/actions/workflows/integration.yml)
+
 Lightweight dependency-free Node.js package to get and set filesystem attributes in Microsoft Windows.
 
 ## Installation
