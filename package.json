@@ -16,7 +16,8 @@
     "build": "node-gyp build && tsc -p tsconfig.json",
     "example": "ts-node ./example/get.ts && ts-node ./example/set.ts",
     "lint": "eslint . --ext .ts",
-    "test": "mocha -r ts-node/register test/**/*.spec.ts"
+    "test": "mocha -r ts-node/register test/**/*.spec.ts",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "attributes",
