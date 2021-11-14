@@ -6,6 +6,8 @@ import {
   createDummyFileSync,
   describeUnix,
   describeWin,
+  getDummyDirPath,
+  getDummyFilePath,
   testAttributes,
   testAttributesFalse,
 } from './helpers';
@@ -47,37 +49,47 @@ describeWin('setAttributes', () => {
     });
   }
 
-  for (let i = 0; i < testAttributes.length; i += 1) {
-    const dir = createDummyDirSync(undefined, 'keeps');
-    setAttributesSync(dir, testAttributesFalse);
-    it(`keeps previously existing attributes when adding ${testAttributes[i].toString()} to a directory`, () => {
-      setAttributesSync(dir, { [testAttributes[i]]: true });
-      const attr = getAttributesSync(dir);
-      for (let j = 0; j < testAttributes.length; j += 1) {
-        if (j <= i) {
-          expect(attr[testAttributes[j]]).to.be.true;
-        } else {
-          expect(attr[testAttributes[j]]).to.be.false;
-        }
-      }
+  describeWin('keeps previously existing attributes:', () => {
+    before(() => {
+      const dir = createDummyDirSync(undefined, 'keeps');
+      setAttributesSync(dir, testAttributesFalse);
     });
-  }
+    for (let i = 0; i < testAttributes.length; i += 1) {
+      it(`when adding ${testAttributes[i].toString()} to a directory`, () => {
+        const dir = getDummyDirPath('keeps');
+        setAttributesSync(dir, { [testAttributes[i]]: true });
+        const attr = getAttributesSync(dir);
+        for (let j = 0; j < testAttributes.length; j += 1) {
+          if (j <= i) {
+            expect(attr[testAttributes[j]]).to.be.true;
+          } else {
+            expect(attr[testAttributes[j]]).to.be.false;
+          }
+        }
+      });
+    }
+  });
 
-  for (let i = 0; i < testAttributes.length; i += 1) {
-    const file = createDummyFileSync(undefined, 'keeps.txt');
-    setAttributesSync(file, testAttributesFalse);
-    it(`keeps previously existing attributes when adding ${testAttributes[i].toString()} to a file`, () => {
-      setAttributesSync(file, { [testAttributes[i]]: true });
-      const attr = getAttributesSync(file);
-      for (let j = 0; j < testAttributes.length; j += 1) {
-        if (j <= i) {
-          expect(attr[testAttributes[j]]).to.be.true;
-        } else {
-          expect(attr[testAttributes[j]]).to.be.false;
-        }
-      }
+  describeWin('keeps previously existing attributes:', () => {
+    before(() => {
+      const file = createDummyFileSync(undefined, 'keeps.txt');
+      setAttributesSync(file, testAttributesFalse);
     });
-  }
+    for (let i = 0; i < testAttributes.length; i += 1) {
+      it(`when adding ${testAttributes[i].toString()} to a file`, () => {
+        const file = getDummyFilePath('keeps.txt');
+        setAttributesSync(file, { [testAttributes[i]]: true });
+        const attr = getAttributesSync(file);
+        for (let j = 0; j < testAttributes.length; j += 1) {
+          if (j <= i) {
+            expect(attr[testAttributes[j]]).to.be.true;
+          } else {
+            expect(attr[testAttributes[j]]).to.be.false;
+          }
+        }
+      });
+    }
+  });
 });
 
 describeUnix('setAttributes', () => {

@@ -67,7 +67,7 @@ function getAttributeLetter(attribute: FileAttribute): string {
  * @param name
  * @returns Path of dummy directory.
  */
-function getDummyDirPath(name?: string): string {
+export function getDummyDirPath(name?: string): string {
   return name
     ? resolve(tmpDir, name)
     : join(tmpDir, 'dummy');
@@ -117,7 +117,7 @@ export function removeDummyDirSync(name?: string): void {
  * @param name
  * @returns Path of dummy file.
  */
- function getDummyFilePath(name?: string): string {
+ export function getDummyFilePath(name?: string): string {
   return name
     ? resolve(tmpDir, name)
     : join(tmpDir, 'dummy.txt');
