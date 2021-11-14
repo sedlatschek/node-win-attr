@@ -5,15 +5,15 @@ Lightweight dependency-free Node.js package to get and set filesystem attributes
 ## Installation
 
 ```sh
-npm install win-attr
+npm install win-attributes
 # or
-yarn add win-attr
+yarn add win-attributes
 ```
 
 ## Usage
 
 ```ts
-import { getAttributes, FileAttribute, setAttributes, SetAttributes  } from 'win-attr';
+import { getAttributes, FileAttribute, setAttributes, SetAttributes  } from 'win-attributes';
 
 (async () => {
   // retrieve attributes
