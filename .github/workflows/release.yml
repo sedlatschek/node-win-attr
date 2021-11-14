@@ -4,10 +4,14 @@ on:
   push:
     tags:
       - 'v*'
+  workflow_run:
+    workflows: ["integration"]
+    branches: [main]
+    types:
+      - completed
 
 jobs:
   publish:
-    needs: tests
     runs-on: windows-latest
     steps:
       - run: echo $GITHUB_REF
