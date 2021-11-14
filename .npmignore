@@ -1,10 +1,11 @@
 .github
 .vscode
 .werk
-node_modules
+build
 example
+node_modules
 test
-src
+src/**.ts
 .editorconfig
 .eslintignore
 .eslintrc
