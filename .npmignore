@@ -7,4 +7,5 @@ test
 .editorconfig
 .eslintignore
 .eslintrc
+.gitattributes
 tsconfig.json
