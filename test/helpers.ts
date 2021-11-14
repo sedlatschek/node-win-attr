@@ -19,8 +19,12 @@ enum AttribMode {
  * @param {FileAttribute} attribute
  */
 function attrib(path: string, mode: AttribMode, attribute: FileAttribute): void {
-  const action = mode === AttribMode.Add ? '+' : '-';
-  execSync(`attrib ${action}${getAttributeLetter(attribute)} "${path}" /s /d`);
+  if (curPlatformIsWin) {
+    const action = mode === AttribMode.Add ? '+' : '-';
+    execSync(`attrib ${action}${getAttributeLetter(attribute)} "${path}" /s /d`);
+  } else {
+    console.warn('attrib was called on non win environment');
+  }
 }
 
 /**
