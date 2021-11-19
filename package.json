@@ -3,6 +3,7 @@
   "version": "0.2.1",
   "description": "Attributes for windows files and directories",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "Simon Sedlatschek <code@sedlatschek.com>",
   "license": "MIT",
   "bugs": {
